@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWA Films - Presupuesto</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .alien-icon {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #8b5cf6 0%, #6366f1 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        .brand-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a1a1aa;
+            margin-bottom: 30px;
+        }
+        
+        .client-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+        
+        .service-intro {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid #06b6d4;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .service-intro h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #06b6d4;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .package {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        }
+        
+        .package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+        
+        .package-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .package-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .package-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #06b6d4;
+            margin-bottom: 5px;
+        }
+        
+        .package-time {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+        
+        .package-features {
+            list-style: none;
+        }
+        
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .package-features li:before {
+            content: '🛸';
+            margin-right: 10px;
+        }
+        
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .extras-section {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .extras-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            text-align: center;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .extra-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .extra-price {
+            font-weight: 700;
+            color: #06b6d4;
+        }
+        
+        .payment-terms {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #8b5cf6;
+        }
+        
+        .contact-footer {
+            text-align: center;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .social-handle {
+            color: #06b6d4;
+            font-weight: 600;
+        }
+        
+        .editable {
+            background: rgba(255, 255, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dashed rgba(255, 255, 0, 0.3);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="alien-icon">👽</div>
+            <h1 class="brand-title">NWA FILMS</h1>
+            <p class="subtitle">Producción Audiovisual con Actitud</p>
+        </div>
+
+        <!-- Client Info -->
+        <div class="client-info">
+            <div class="info-row">
+                <span class="info-label">Cliente:</span>
+                <span class="editable">[NOMBRE DEL CLIENTE]</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Fecha de Emisión:</span>
+                <span class="editable">[DD/MM/YYYY]</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Fecha de Vencimiento:</span>
+                <span class="editable">[DD/MM/YYYY]</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Proyecto:</span>
+                <span class="editable">[TIPO DE SERVICIO]</span>
+            </div>
+        </div>
+
+        <!-- Service Introduction -->
+        <div class="service-intro">
+            <h2>🎬 VIDEOCLIPS MUSICALES</h2>
+            <p>En NWA Films nos especializamos en videoclips que marcan diferencia para artistas de rap y trap. Nuestro enfoque se basa en generar contenido que impacte, represente tu identidad musical y te sirva para proyectar tu carrera, ayudándote a atraer más fans y comunicar tu propuesta con autenticidad.</p>
+        </div>
+
+        <!-- Packages -->
+        <div class="packages-grid">
+            <div class="package">
+                <div class="package-header">
+                    <h3 class="package-name">PACK BASIC</h3>
+                    <div class="package-price">$165.000</div>
+                    <div class="package-time">Tiempo del servicio: 1.5 horas</div>
+                </div>
+                <ul class="package-features">
+                    <li>Filmación profesional</li>
+                    <li>Edición por corte básica</li>
+                    <li>Video final 4K</li>
+                    <li>Fotos del rodaje</li>
+                    <li>Teaser + Tráiler</li>
+                    <li>1 tanda de correcciones</li>
+                    <li>Entrega: 7 días hábiles</li>
+                </ul>
+            </div>
+
+            <div class="package">
+                <div class="package-header">
+                    <h3 class="package-name">PACK PRO</h3>
+                    <div class="package-price">$240.000</div>
+                    <div class="package-time">Tiempo del servicio: 3 horas</div>
+                </div>
+                <ul class="package-features">
+                    <li>Todo del Pack Basic</li>
+                    <li>Color grading avanzado</li>
+                    <li>Behind the scenes</li>
+                    <li>Contenido para redes (3 reels)</li>
+                    <li>2 tandas de correcciones</li>
+                    <li>Entrega: 5 días hábiles</li>
+                </ul>
+            </div>
+
+            <div class="package">
+                <div class="package-header">
+                    <h3 class="package-name">PACK ELITE</h3>
+                    <div class="package-price">$350.000</div>
+                    <div class="package-time">Tiempo del servicio: 4 horas</div>
+                </div>
+                <ul class="package-features">
+                    <li>Todo del Pack Pro</li>
+                    <li>Vuelo de drone FPV</li>
+                    <li>Efectos especiales</li>
+                    <li>Pack completo redes (5 reels + stories)</li>
+                    <li>Video "Ya disponible"</li>
+                    <li>Entrega: 3 días hábiles</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Extras -->
+        <div class="extras-section">
+            <h3 class="extras-title">🚀 EXTRAS DISPONIBLES</h3>
+            <div class="extras-grid">
+                <div class="extra-item">
+                    <span>🚁 Drone FPV</span>
+                    <span class="extra-price">$25.000</span>
+                </div>
+                <div class="extra-item">
+                    <span>🎬 Behind the Scenes</span>
+                    <span class="extra-price">$18.000</span>
+                </div>
+                <div class="extra-item">
+                    <span>🎨 Color Grading Cine</span>
+                    <span class="extra-price">$22.000</span>
+                </div>
+                <div class="extra-item">
+                    <span>📱 Pack Redes Completo</span>
+                    <span class="extra-price">$35.000</span>
+                </div>
+                <div class="extra-item">
+                    <span>🎤 Locación Premium</span>
+                    <span class="extra-price">$40.000</span>
+                </div>
+                <div class="extra-item">
+                    <span>⚡ Entrega Express 24hs</span>
+                    <span class="extra-price">$30.000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Terms -->
+        <div class="payment-terms">
+            <h3 class="payment-title">💳 CONDICIONES DE PAGO</h3>
+            <p><strong>Para formalizar la reserva de este servicio, se requiere un anticipo del 50% como concepto de seña.</strong> Este pago inicial asegura la disponibilidad de los recursos necesarios y confirma tu compromiso con el proyecto.</p>
+            <br>
+            <p>Una vez recibido el anticipo, se procederá a confirmar oficialmente la reserva y coordinar los detalles necesarios para la realización del trabajo acordado.</p>
+            <br>
+            <p><strong>• Seña:</strong> 50% al confirmar<br>
+            <strong>• Saldo:</strong> 50% antes de entrega final<br>
+            <strong>• La seña no es reembolsable bajo ningún concepto</strong></p>
+        </div>
+
+        <!-- Contact Footer -->
+        <div class="contact-footer">
+            <div class="contact-info">📱 Tel. +54 291 XXXXXXX</div>
+            <div class="contact-info social-handle">@NWAFILMS</div>
+            <div class="contact-info">🎬 Gianluca Luzzi - Director</div>
+            <div class="contact-info">📍 Bahía Blanca, Argentina</div>
+        </div>
+    </div>
+</body>
+</html>
